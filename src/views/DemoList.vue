@@ -1,7 +1,12 @@
 <template>
   <div>
     <el-card class="card">
-      <div v-for="item in listData" :key="item.key" @click="clickItem(item)">
+      <div
+        class="item"
+        v-for="item in listData"
+        :key="item.key"
+        @click="clickItem(item)"
+      >
         <p>{{ item.title }}</p>
         <el-divider></el-divider>
       </div>
@@ -21,6 +26,7 @@
 <script>
 export default {
   name: "Demo List",
+  components: {},
   data() {
     return {
       listData: [
@@ -96,6 +102,9 @@ export default {
   margin: 0 auto;
   p {
     margin-top: 20px;
+  }
+  .item {
+    cursor: pointer;
   }
 }
 </style>
