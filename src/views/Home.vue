@@ -81,6 +81,7 @@ export default {
         { title: "vuex的使用", router: "/InputData" },
         { title: "row布局和高斯模糊", router: "/demo/rowlayout" },
         { title: "弹窗消息", router: "/demo" },
+        { title: "每日新闻简报", router: "/News" },
       ],
     };
   },

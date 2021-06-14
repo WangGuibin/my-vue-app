@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import RowLayout from '@/components/RowLayout.vue'
+import News from '../views/NewsPage.vue';
+
 
 Vue.use(VueRouter);
 
@@ -29,6 +31,11 @@ const routes = [{
         path: '/demo/rowlayout',
         name: 'RowLayout',
         component: RowLayout
+    },
+    {
+        path: '/News',
+        name: 'News',
+        component: News
     },
 ];
 
