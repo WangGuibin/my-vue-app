@@ -92,6 +92,7 @@
 
 <script>
 import axios from "axios";
+import { requestData } from "../http/index";
 
 export default {
   name: "News",
@@ -113,22 +114,13 @@ export default {
   },
   methods: {
     getData() {
-      let config = {
+      this.$http({
+        url: "/api?ip=112.97.57.70&count=12",
+        method: "get",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
-      };
-
-      let data = {
-        ip: "112.97.57.70",
-        count: 12,
-      };
-      axios({
-        url: "/api",
-        method: "get",
-        data,
-        config,
       })
         .then((result) => {
           this.results = result.data.data;
