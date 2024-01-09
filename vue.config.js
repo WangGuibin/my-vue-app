@@ -2,15 +2,15 @@ module.exports = {
     devServer: {
         open: true,
         port: 8080,
-        proxy: {
-            [process.env.VUE_APP_BASE_API]: {
-                target: "http://news.topurl.cn",
-                chageOrigin: true,
-                pathRewrite: {
-                    ['^' + process.env.VUE_APP_BASE_API]: ''
-                }
-            }
-        }
+        // proxy: {
+        //     [process.env.VUE_APP_BASE_API]: {
+        //         target: "",
+        //         chageOrigin: true,
+        //         pathRewrite: {
+        //             ['^' + process.env.VUE_APP_BASE_API]: ''
+        //         }
+        //     }
+        // }
     },
     publicPath: './', // 默认'/'，部署应用包时的基本 URL
     outputDir: 'dist',

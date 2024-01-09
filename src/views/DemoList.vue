@@ -11,6 +11,15 @@
         <el-divider></el-divider>
       </div>
     </el-card>
+    <!-- zip文件下载 -->
+    <a class="download-zip-component" :href="fileURL" target="_blank">
+      <img
+        src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210815171627.png"
+      />
+      <span class="fileName-text">{{ fileName }}</span>
+    </a>
+    <!-- zip文件下载 -->
+
     <el-alert
       v-show="showAlert"
       title="成功提示的文案"
@@ -29,6 +38,8 @@ export default {
   components: {},
   data() {
     return {
+      fileURL: "https://www.baidu.com/",
+      fileName: "学习资料",
       listData: [
         { title: "Alert提示消息", key: "Alert" },
         { title: "Message消息提示", key: "Message" },
@@ -106,5 +117,19 @@ export default {
   .item {
     cursor: pointer;
   }
+}
+.download-zip-component {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.fileName-text {
+  font-weight: 800px;
+  font-size: 15px;
+  color: black;
 }
 </style>

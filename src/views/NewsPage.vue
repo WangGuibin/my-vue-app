@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3 style="text-align: center">每日新闻简报</h3>
+    <div class="message">{{ res }}</div>
     <div class="date-container">
       <p>
         今天是 {{ results.calendar.cYear }}年{{ results.calendar.cMonth }}月{{
@@ -107,6 +108,7 @@ export default {
         poem: {},
         weather: {},
       },
+      res: "",
     };
   },
   mounted() {
@@ -114,26 +116,77 @@ export default {
   },
   methods: {
     getData() {
-      this.$http({
-        url: "/api?ip=112.97.57.70&count=12",
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-        .then((result) => {
-          this.results = result.data.data;
-        })
-        .catch((err) => {
-          this.$message(err.message);
-        });
+      // var xhr = new XMLHttpRequest();
+      // xhr.setRequestHeader("Content-Type", "application/json");
+      // xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+      // xhr.open("GET", "http://news.topurl.cn", true);
+      // xhr.send(null);
+
+      // xhr.onreadystatechange = function () {
+      //   if (xhr.readyState == 4 && xhr.status == 200) {
+      //     var data = xhr.responseText;
+      //     this.results = data.data;
+      //   }
+      // };
+
+      this.getDayReport((res) => {
+        this.res = res;
+        console.log(res);
+      });
+
+      // this.$http({
+      //   url: "/api?ip=112.97.57.70&count=12",
+      //   method: "get",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "Access-Control-Allow-Origin": "*",
+      //   },
+      // })
+      //   .then((result) => {
+      //     this.results = result.data.data;
+      //   })
+      //   .catch((err) => {
+      //     this.$message(err.message);
+      //   });
+    },
+    //获取当前日期函数
+    getCurrentFormatDate() {
+      let date = new Date(),
+        seperator1 = "-", //格式分隔符
+        year = date.getFullYear(), //获取完整的年份(4位)
+        month = date.getMonth() + 1, //获取当前月份(0-11,0代表1月)
+        strDate = date.getDate(); // 获取当前日(1-31)
+      if (month >= 1 && month <= 9) month = "0" + month; // 如果月份是个位数，在前面补0
+      if (strDate >= 0 && strDate <= 9) strDate = "0" + strDate; // 如果日是个位数，在前面补0
+
+      // let currentdate = year + seperator1 + month + seperator1 + strDate;
+      return `${year}-${month}-${strDate}`;
+    },
+
+    //网络请求之后渲染 this.setState 的用法
+    getDayReport(cb) {
+      const dateStr = this.getCurrentFormatDate();
+      const url =
+        "https://cdn.jsdelivr.net/gh/WangGuibin/weather-action@master/logs/" +
+        dateStr +
+        ".txt";
+      var req = new XMLHttpRequest();
+      req.open("GET", url, true);
+      req.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          cb(this.responseText);
+        }
+      };
+      req.send();
     },
   },
 };
 </script>
 
 <style lang="less" scoped>
+.message {
+  white-space: pre-line;
+}
 .date-container {
   background-color: lightskyblue;
   color: orangered;

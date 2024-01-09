@@ -76,8 +76,7 @@ export default {
         },
         {
           title: "Grid布局",
-          link:
-            "http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html",
+          link: "http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html",
         },
         {
           title: "猫眼电影票",
@@ -117,6 +116,7 @@ export default {
   background-color: lightgray;
   margin-top: 50px;
   padding-bottom: 100px;
+  user-select: none;
 }
 
 .sw {
